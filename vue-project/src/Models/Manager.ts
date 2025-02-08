@@ -126,6 +126,12 @@ class HouseWorkManager {
         }
         return houseworks;
     }
+
+    async createHouseWork(ownerId: number, workId: number): Promise<boolean> {
+        let housework = new HouseWork();
+        let result = await housework.create(ownerId, workId, Date.now());
+        return result;
+    }
 }
 
 export default HouseWorkManager;
