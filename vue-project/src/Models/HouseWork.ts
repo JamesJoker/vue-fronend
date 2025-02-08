@@ -5,19 +5,26 @@ class HouseWork {
     id: string | undefined;
     workId: number | undefined;
     ownerId: number | undefined;
-    weekday: string | undefined;
+    date: number | undefined;
 
-    init(id: string, workId: number, ownerId: number, weekday: string) {
+    init(id: string, workId: number, ownerId: number, date: number) {
         this.id = id;
         this.workId = workId;
         this.ownerId = ownerId;
-        this.weekday = weekday;
+        this.date = date;
     }
 
-    create(work: HouseWork): Promise<any> {
+    create(workId: number, ownerId: number, date: number): Promise<any> {
         let headers = {
             'content-type': 'application/json'
         }
+
+        let work = {
+            workid: workId,
+            ownerId: ownerId,
+            date: date
+        }
+
         return apiRequest.post(APIPath.HouseWork(), JSON.stringify(work), headers);
     }
 

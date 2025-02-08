@@ -5,17 +5,26 @@ import APIPath from "./BackendAPI/api_path";
 import apiRequest from "./apiRequest";
 
 class HouseWorkDetail extends HouseWork {
+    frequency: string | undefined;
     workname: string | undefined;
     ownername: string | undefined;
+    currentday: string | undefined;
 
     constructor(housework: HouseWork, work: string, owner: string){
         super();
         this.id = housework.id;
         this.workId = housework.workId;
         this.ownerId = housework.ownerId;
-        this.weekday = housework.weekday;
+        this.date = housework.date;
         this.workname = work;
         this.ownername = owner;
+
+        if(this.date){
+            this.currentday = new Date(this.date).toJSON();
+        }
+        else{
+            this.currentday = new Date().toJSON();
+        }
     }
 }
 
@@ -36,30 +45,37 @@ class HouseWorkManager {
         this.Works = await this.getWorks();
         this.Members = await this.getMembers();
         this.HouseWorks = await this.getHouseworks();
-        this.HouseWorkDetails = await this.getHouseWorkDetail();
+        this.HouseWorkDetails = this.getHouseWorkDetails();
     }
 
 
-    getHouseWorkDetail() {
+    getHouseWorkDetails() {
         let details: HouseWorkDetail[] = [];
-        for(let housework of this.HouseWorks){
+        for (let housework of this.HouseWorks) {
             let detail = new HouseWorkDetail(housework, '', '');
             detail.workname = this.getWorkname(detail.workId ?? -1);
             detail.ownername = this.getOwnername(detail.ownerId ?? -1);
+            detail.frequency = this.getFrequency(detail.workId ?? -1);
             details.push(detail);
         }
         return details;
     }
 
+    private getFrequency(workId: number): string | undefined{
+        if(workId < 0) return undefined;
 
-    getWorkname(workId: number): string | undefined{
+        let work = this.Works.find(w => workId === w.id);
+        return work?.frequency;
+    }
+
+    private getWorkname(workId: number): string | undefined{
         if(workId < 0) return undefined;
 
         let work = this.Works.find(w => workId === w.id);
         return work?.name;
     }
 
-    getOwnername(ownerId: number): string | undefined{
+    private getOwnername(ownerId: number): string | undefined{
         if(ownerId < 0) return undefined;
 
         let owner = this.Members.find(m => ownerId === m.id);
