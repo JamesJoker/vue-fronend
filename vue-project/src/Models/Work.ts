@@ -30,9 +30,10 @@ class Work {
 
     delete(work: Work) {
         let headers = {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'workId': work.id
         }
-        return apiRequest.delete(APIPath.HouseWork(), JSON.stringify(work), headers);
+        return apiRequest.delete(APIPath.HouseWork(), headers);
     }
 }
 

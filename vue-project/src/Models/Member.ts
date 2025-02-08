@@ -26,9 +26,10 @@ class Member {
 
     delete(member: Member): Promise<any> {
         let headers = {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'id': member.id
         }
-        return apiRequest.delete(APIPath.Member(), JSON.stringify(member), headers);
+        return apiRequest.delete(APIPath.Member(), headers);
     }
 }
 

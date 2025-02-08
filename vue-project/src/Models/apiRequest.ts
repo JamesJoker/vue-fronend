@@ -34,11 +34,10 @@ class apiRequest {
         })
     }
 
-    delete(url: string, data: string, headers: any): Promise<any> {
+    delete(url: string, headers: any): Promise<any> {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 headers: headers,
-                body: data,
                 method: "DELETE"
             })
             .then((response) => {resolve(response)})
