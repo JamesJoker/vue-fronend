@@ -10,18 +10,18 @@ class Member {
         this.name = name;
     }
 
-    create(member: Member): Promise<any> {
+    create(name: string): Promise<any> {
         let headers = {
             'content-type': 'application/json'
         }
-        return apiRequest.post(APIPath.Member(), JSON.stringify(member), headers);
+        return apiRequest.post(APIPath.Member(), JSON.stringify(name), headers);
     }
 
-    modify(member: Member): Promise<any> {
+    modify(): Promise<any> {
         let headers = {
             'content-type': 'application/json'
         }
-        return apiRequest.put(APIPath.Member(), JSON.stringify(member), headers);
+        return apiRequest.put(APIPath.Member(), JSON.stringify({id: this.id, name: this.name}), headers);
     }
 
     delete(member: Member): Promise<any> {
