@@ -50,7 +50,7 @@ const createFunc = async(name: string) => {
         </div>
         <div>
             <slot>
-                <input type="text" v-text="selected?.name">
+                <input type="text" v-model="selected?.name">
             </slot>
         </div>
         <div class="footer">
