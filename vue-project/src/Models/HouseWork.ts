@@ -28,17 +28,17 @@ class HouseWork {
         return apiRequest.post(APIPath.HouseWork(), JSON.stringify(work), headers);
     }
 
-    modify(work: HouseWork): Promise<any> {
+    modify(): Promise<any> {
         let headers = {
             'content-type': 'application/json'
         }
-        return apiRequest.put(APIPath.HouseWork(), JSON.stringify(work), headers);
+        return apiRequest.put(APIPath.HouseWork(), JSON.stringify(this), headers);
     }
 
-    delete(work: HouseWork): Promise<any> {
+    delete(): Promise<any> {
         let headers = {
             'content-type': 'application/json',
-            'workId': work.id
+            'workId': this.id
         }
         return apiRequest.delete(APIPath.HouseWork(), headers);
     }

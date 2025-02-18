@@ -24,10 +24,10 @@ class Member {
         return apiRequest.put(APIPath.Member(), JSON.stringify({id: this.id, name: this.name}), headers);
     }
 
-    delete(id: number): Promise<any> {
+    delete(): Promise<any> {
         let headers = {
             'content-type': 'application/json',
-            'id': id
+            'id': this.id
         }
         return apiRequest.delete(APIPath.Member(), headers);
     }

@@ -47,10 +47,10 @@ class Work {
             );
     }
 
-    delete(id: number) {
+    delete() {
         let headers = {
             'content-type': 'application/json',
-            'workId': id
+            'workId': this.id
         }
         return apiRequest.delete(APIPath.HouseWork(), headers);
     }

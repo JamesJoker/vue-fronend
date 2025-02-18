@@ -134,4 +134,4 @@ class HouseWorkManager {
     }
 }
 
-export default HouseWorkManager;
+export default new HouseWorkManager();
