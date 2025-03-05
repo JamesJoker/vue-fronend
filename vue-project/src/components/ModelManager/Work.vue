@@ -49,7 +49,7 @@ const createFunc = async(name: string) => {
             </slot>
             <slot>
                 <label for="">成員</label>
-                <div v-for="(value, key, index) in members" :key="index">
+                <div v-for="(value, index) in members" :key="index">
                     <input type="checkbox" :id="`${value.id}`" v-model="memberids">
                     <label :for="value.name">{{ value.name }}</label>
                 </div>
