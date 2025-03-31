@@ -28,6 +28,7 @@ function AddDays(date: Date, days: number){
 </script>
 
 <template>
+    <a>{{ currentMonth.toLocaleString() }}</a>
     <table style="border:1px solid black">
         <thead style="border:1px solid skyblue">
             <tr>
